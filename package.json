@@ -1,0 +1,52 @@
+{
+  "name": "photofest",
+  "productName": "PhotoFest",
+  "version": "1.0.0",
+  "description": "PhotoFest - aplikasi photobooth PC: kamera, printer, layout strip 5x15 cm, GIF animasi, upload otomatis ke Google Drive",
+  "main": "main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node test/run-tests.js",
+    "dist": "electron-builder --win --x64"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "id.thefest.photofest",
+    "productName": "PhotoFest",
+    "files": [
+      "main/**/*",
+      "src/**/*",
+      "build/icon.png",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "PhotoFest-Setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "runAfterFinish": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "PhotoFest",
+      "deleteAppDataOnUninstall": false
+    }
+  },
+  "author": "PhotoFest"
+}
